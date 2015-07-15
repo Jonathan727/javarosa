@@ -16,11 +16,16 @@
 
 package org.javarosa.form.api;
 
+import android.support.annotation.IntDef;
+
 import org.javarosa.core.model.FormIndex;
 import org.javarosa.core.model.QuestionDef;
 import org.javarosa.core.model.data.IAnswerData;
 import org.javarosa.core.model.instance.InvalidReferenceException;
 import org.javarosa.core.model.instance.TreeElement;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * This class is used to navigate through an xform and appropriately manipulate
@@ -31,6 +36,12 @@ public class FormEntryController {
     public static final int ANSWER_REQUIRED_BUT_EMPTY = 1;
     public static final int ANSWER_CONSTRAINT_VIOLATED = 2;
 
+
+    @IntDef({EVENT_BEGINNING_OF_FORM, EVENT_END_OF_FORM, EVENT_PROMPT_NEW_REPEAT, EVENT_QUESTION,
+            EVENT_GROUP, EVENT_REPEAT, EVENT_REPEAT_JUNCTURE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface EventKind {
+    }
     public static final int EVENT_BEGINNING_OF_FORM = 0;
     public static final int EVENT_END_OF_FORM = 1;
     public static final int EVENT_PROMPT_NEW_REPEAT = 2;
@@ -164,6 +175,7 @@ public class FormEntryController {
      *
      * @return the next event that should be handled by a view.
      */
+    @FormEntryController.EventKind
     public int stepToNextEvent() {
         return stepEvent(true);
     }
@@ -174,6 +186,7 @@ public class FormEntryController {
      *
      * @return the next event that should be handled by a view.
      */
+    @FormEntryController.EventKind
     public int stepToPreviousEvent() {
         return stepEvent(false);
     }
@@ -185,6 +198,7 @@ public class FormEntryController {
      * @param forward
      * @return
      */
+    @FormEntryController.EventKind
     private int stepEvent(boolean forward) {
         FormIndex index = model.getFormIndex();
 
@@ -206,6 +220,7 @@ public class FormEntryController {
      * @param index
      * @return EVENT for the specified Index.
      */
+    @FormEntryController.EventKind
     public int jumpToIndex(FormIndex index) {
         model.setQuestionIndex(index);
         return model.getEvent(index);

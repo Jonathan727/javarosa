@@ -95,6 +95,7 @@ public class FormEntryModel {
      *
      * @see FormEntryController
      */
+    @FormEntryController.EventKind
     public int getEvent(FormIndex index) {
         if (index.isBeginningOfFormIndex()) {
             return FormEntryController.EVENT_BEGINNING_OF_FORM;
@@ -140,6 +141,7 @@ public class FormEntryModel {
      * @return the event for the current FormIndex
      * @see FormEntryController
      */
+    @FormEntryController.EventKind
     public int getEvent() {
         return getEvent(currentFormIndex);
     }
