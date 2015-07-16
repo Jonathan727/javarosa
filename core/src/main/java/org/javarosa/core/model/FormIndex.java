@@ -16,6 +16,8 @@
 
 package org.javarosa.core.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -42,7 +44,7 @@ import java.util.List;
  * @author Clayton Sims
  *
  */
-public class FormIndex {
+public class FormIndex implements Parcelable {
 
 	private boolean beginningOfForm = false;
 
@@ -489,4 +491,38 @@ public class FormIndex {
 			i++;
 		}
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeByte(beginningOfForm ? (byte) 1 : (byte) 0);
+		dest.writeByte(endOfForm ? (byte) 1 : (byte) 0);
+		dest.writeInt(this.localIndex);
+		dest.writeInt(this.instanceIndex);
+		dest.writeParcelable(this.nextLevel, flags);
+		dest.writeParcelable(this.reference, 0);
+	}
+
+	protected FormIndex(Parcel in) {
+		this.beginningOfForm = in.readByte() != 0;
+		this.endOfForm = in.readByte() != 0;
+		this.localIndex = in.readInt();
+		this.instanceIndex = in.readInt();
+		this.nextLevel = in.readParcelable(FormIndex.class.getClassLoader());
+		this.reference = in.readParcelable(TreeReference.class.getClassLoader());
+	}
+
+	public static final Parcelable.Creator<FormIndex> CREATOR = new Parcelable.Creator<FormIndex>() {
+		public FormIndex createFromParcel(Parcel source) {
+			return new FormIndex(source);
+		}
+
+		public FormIndex[] newArray(int size) {
+			return new FormIndex[size];
+		}
+	};
 }
