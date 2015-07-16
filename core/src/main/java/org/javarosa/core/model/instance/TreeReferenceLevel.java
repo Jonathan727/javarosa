@@ -3,10 +3,8 @@
  */
 package org.javarosa.core.model.instance;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import org.javarosa.core.util.ArrayUtilities;
 import org.javarosa.core.util.CacheTable;
@@ -17,11 +15,17 @@ import org.javarosa.core.util.externalizable.Externalizable;
 import org.javarosa.core.util.externalizable.PrototypeFactory;
 import org.javarosa.xpath.expr.XPathExpression;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author ctsims
  *
  */
-public class TreeReferenceLevel implements Externalizable {
+public class TreeReferenceLevel implements Externalizable, Parcelable {
 	public static final int MULT_UNINIT = -16;
 	
 	private String name;
@@ -129,4 +133,33 @@ public class TreeReferenceLevel implements Externalizable {
 			return refs.intern(this);
 		}
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.name);
+		dest.writeInt(this.multiplicity);
+		dest.writeList(this.predicates);
+	}
+
+	protected TreeReferenceLevel(Parcel in) {
+		this.name = in.readString();
+		this.multiplicity = in.readInt();
+		this.predicates = new ArrayList<XPathExpression>();
+		in.readList(this.predicates, List.class.getClassLoader());
+	}
+
+	public static final Parcelable.Creator<TreeReferenceLevel> CREATOR = new Parcelable.Creator<TreeReferenceLevel>() {
+		public TreeReferenceLevel createFromParcel(Parcel source) {
+			return new TreeReferenceLevel(source);
+		}
+
+		public TreeReferenceLevel[] newArray(int size) {
+			return new TreeReferenceLevel[size];
+		}
+	};
 }
