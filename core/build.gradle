@@ -6,7 +6,10 @@ targetCompatibility = 1.6
 sourceSets {
     main {
         java {
-            srcDir 'src' //see https://docs.gradle.org/current/userguide/java_plugin.html#sec:source_sets 
+            java {
+                main.java.srcDirs = ['src']
+                // see http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Project-Structure
+            }
         }
     }
 }
