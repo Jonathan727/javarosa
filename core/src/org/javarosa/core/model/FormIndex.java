@@ -16,10 +16,13 @@
 
 package org.javarosa.core.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.javarosa.core.model.instance.TreeReference;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A Form Index is an immutable index into a specific question definition that
@@ -60,6 +63,7 @@ public class FormIndex {
 	 *
 	 * @return an index before the start of the form
 	 */
+	@Nullable
 	public static FormIndex createBeginningOfFormIndex() {
 		FormIndex begin = new FormIndex(-1, null);
 		begin.beginningOfForm = true;
@@ -70,6 +74,7 @@ public class FormIndex {
 	 *
 	 * @return an index after the end of the form
 	 */
+	@Nullable
 	public static FormIndex createEndOfFormIndex() {
 		FormIndex end = new FormIndex(-1,null);
 		end.endOfForm = true;
@@ -122,7 +127,7 @@ public class FormIndex {
 	 * index.
 	 * (currentLevel, (nextLevel...))
 	 */
-	public FormIndex(FormIndex nextLevel, FormIndex currentLevel) {
+	public FormIndex(@NonNull FormIndex nextLevel, @Nullable FormIndex currentLevel) {
 		if(currentLevel == null) {
 			this.nextLevel = nextLevel.nextLevel;
 			this.localIndex = nextLevel.localIndex;
@@ -336,6 +341,7 @@ public class FormIndex {
 	/**
 	 * @return Only the local component of this Form Index.
 	 */
+	@NonNull
 	public FormIndex snip() {
 		FormIndex retval = new FormIndex(localIndex, instanceIndex,reference);
 		return retval;
@@ -358,7 +364,8 @@ public class FormIndex {
 	 * @param subIndex
 	 * @return
 	 */
-	public FormIndex diff(FormIndex subIndex) {
+	@Nullable
+	public FormIndex diff(@Nullable FormIndex subIndex) {
 		if(subIndex == null) {
 			return this;
 		}
@@ -371,6 +378,7 @@ public class FormIndex {
 		return new FormIndex(nextLevel.diff(subIndex),this.snip());
 	}
 
+	@NonNull
 	public String toString() {
 		StringBuilder b = new StringBuilder();
 		FormIndex ref = this;
@@ -406,7 +414,7 @@ public class FormIndex {
 	 * @param index
 	 * @return
 	 */
-	public static FormIndex trimNegativeIndices(FormIndex index) {
+	public static FormIndex trimNegativeIndices(@NonNull FormIndex index) {
 		if(!index.isTerminal()) {
 			return new FormIndex(trimNegativeIndices(index.nextLevel),index);
 		} else {
@@ -418,7 +426,7 @@ public class FormIndex {
 		}
 	}
 
-	public static boolean isSubIndex(FormIndex parent, FormIndex child) {
+	public static boolean isSubIndex(@Nullable FormIndex parent, @NonNull FormIndex child) {
 		if(child.equals(parent)) {
 			return true;
 		} else {
@@ -429,7 +437,7 @@ public class FormIndex {
 		}
 	}
 
-	public static boolean isSubElement(FormIndex parent, FormIndex child) {
+	public static boolean isSubElement(@NonNull FormIndex parent, @NonNull FormIndex child) {
 		while(!parent.isTerminal() && !child.isTerminal()) {
 			if(parent.getLocalIndex() != child.getLocalIndex()) {
 				return false;
@@ -458,7 +466,7 @@ public class FormIndex {
 		return true;
 	}
 
-	public void assignRefs(FormDef f) {
+	public void assignRefs(@NonNull FormDef f) {
 		FormIndex cur = this;
 
       List<Integer> indexes = new ArrayList<Integer>();
