@@ -32,6 +32,11 @@ import java.lang.annotation.RetentionPolicy;
  * the FormEntryModel's state.
  */
 public class FormEntryController {
+
+    @IntDef({ANSWER_OK, ANSWER_CONSTRAINT_VIOLATED, ANSWER_REQUIRED_BUT_EMPTY})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface AnswerStatus {
+    }
     public static final int ANSWER_OK = 0;
     public static final int ANSWER_REQUIRED_BUT_EMPTY = 1;
     public static final int ANSWER_CONSTRAINT_VIOLATED = 2;
@@ -86,6 +91,7 @@ public class FormEntryController {
      * @param data
      * @return OK if save was successful, error if a constraint was violated.
      */
+    @AnswerStatus
     public int answerQuestion(FormIndex index, IAnswerData data, boolean midSurvey) {
     	QuestionDef q = model.getQuestionPrompt(index).getQuestion();
         if (model.getEvent(index) != FormEntryController.EVENT_QUESTION) {

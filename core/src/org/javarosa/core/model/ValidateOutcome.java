@@ -16,11 +16,14 @@
 
 package org.javarosa.core.model;
 
+import org.javarosa.form.api.FormEntryController;
+
 public class ValidateOutcome {
    public final FormIndex failedPrompt;
+   @FormEntryController.AnswerStatus
    public final int outcome;
    
-   ValidateOutcome(FormIndex failedPrompt, int outcome) {
+   ValidateOutcome(FormIndex failedPrompt, @FormEntryController.AnswerStatus int outcome) {
       this.failedPrompt = failedPrompt;
       this.outcome = outcome;
    }
