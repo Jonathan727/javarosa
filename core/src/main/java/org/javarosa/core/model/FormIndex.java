@@ -65,7 +65,7 @@ public class FormIndex implements Parcelable {
 	 *
 	 * @return an index before the start of the form
 	 */
-	@Nullable
+	//	@Nullable todo: I don't think android studio's inferred annotation is correct.
 	public static FormIndex createBeginningOfFormIndex() {
 		FormIndex begin = new FormIndex(-1, null);
 		begin.beginningOfForm = true;
@@ -76,7 +76,7 @@ public class FormIndex implements Parcelable {
 	 *
 	 * @return an index after the end of the form
 	 */
-	@Nullable
+//	@Nullable todo: I don't think android studio's inferred annotation is correct.
 	public static FormIndex createEndOfFormIndex() {
 		FormIndex end = new FormIndex(-1,null);
 		end.endOfForm = true;
