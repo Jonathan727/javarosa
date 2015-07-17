@@ -295,9 +295,9 @@ public class Parser {
 				step.axisType = ASTNodePathStep.AXIS_TYPE_ABBR;
 				i += 1;
 			} else if (node.content.size() > 1 && node.getTokenType(0) == Token.QNAME && node.getTokenType(1) == Token.DBL_COLON) {
-				int axisVal = ASTNodePathStep.validateAxisName(((XPathQName)node.getToken(0).val).toString());
+				int axisVal = ASTNodePathStep.validateAxisName(node.getToken(0).val.toString());
 				if (axisVal == -1) {
-					throw new XPathSyntaxException("Invalid Axis: " + ((XPathQName)node.getToken(0).val).toString());
+					throw new XPathSyntaxException("Invalid Axis: " + node.getToken(0).val.toString());
 				}
 				step.axisType = ASTNodePathStep.AXIS_TYPE_EXPLICIT;
 				step.axisVal = axisVal;

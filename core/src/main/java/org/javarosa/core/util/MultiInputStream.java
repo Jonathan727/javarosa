@@ -88,7 +88,7 @@ public class MultiInputStream extends InputStream {
 		//an end of stream
 		while(next == -1 && currentStream + 1 < streams.size()) {
 			currentStream++;
-			cur = ((InputStream)streams.get(currentStream));
+			cur = streams.get(currentStream);
 			next = cur.read();
 		}
 

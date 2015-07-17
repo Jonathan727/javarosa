@@ -54,7 +54,7 @@ public class PrototypeFactory {
 			List<String> vClasses = classNames.getStrings();
 
 			for (int i = 0; i < vClasses.size(); i++) {
-				String name = (String)vClasses.get(i);
+				String name = vClasses.get(i);
 				try {
 					addClass(Class.forName(name));
 				} catch (ClassNotFoundException cnfe) {

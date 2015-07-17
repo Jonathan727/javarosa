@@ -9,13 +9,13 @@ import org.javarosa.xpath.expr.XPathExpression;
 
 public interface AbstractTreeElement<T extends AbstractTreeElement> {
 
-	public abstract boolean isLeaf();
+	boolean isLeaf();
 
-	public abstract boolean isChildable();
+	boolean isChildable();
 
-	public abstract String getInstanceName();
+	String getInstanceName();
 
-	public abstract T getChild(String name, int multiplicity);
+	T getChild(String name, int multiplicity);
 
 	/**
 	 * 
@@ -24,19 +24,19 @@ public interface AbstractTreeElement<T extends AbstractTreeElement> {
 	 * @param name
 	 * @return
 	 */
-	public abstract List<T> getChildrenWithName(String name);
+	List<T> getChildrenWithName(String name);
 	
-	public abstract boolean hasChildren();
+	boolean hasChildren();
 
-	public abstract int getNumChildren();
+	int getNumChildren();
 
-	public abstract T getChildAt(int i);
+	T getChildAt(int i);
 
-	public abstract boolean isRepeatable();
+	boolean isRepeatable();
 
-	public abstract boolean isAttribute();
+	boolean isAttribute();
 			
-	public abstract int getChildMultiplicity(String name);
+	int getChildMultiplicity(String name);
 
 	/**
 	 * Visitor pattern acceptance method.
@@ -44,12 +44,12 @@ public interface AbstractTreeElement<T extends AbstractTreeElement> {
 	 * @param visitor
 	 *            The visitor traveling this tree
 	 */
-	public abstract void accept(ITreeVisitor visitor);
+	void accept(ITreeVisitor visitor);
 
 	/**
 	 * Returns the number of attributes of this element.
 	 */
-	public abstract int getAttributeCount();
+	int getAttributeCount();
 
 	/**
 	 * get namespace of attribute at 'index' in the list
@@ -57,7 +57,7 @@ public interface AbstractTreeElement<T extends AbstractTreeElement> {
 	 * @param index
 	 * @return String
 	 */
-	public abstract String getAttributeNamespace(int index);
+	String getAttributeNamespace(int index);
 
 	/**
 	 * get name of attribute at 'index' in the list
@@ -65,7 +65,7 @@ public interface AbstractTreeElement<T extends AbstractTreeElement> {
 	 * @param index
 	 * @return String
 	 */
-	public abstract String getAttributeName(int index);
+	String getAttributeName(int index);
 
 	/**
 	 * get value of attribute at 'index' in the list
@@ -73,7 +73,7 @@ public interface AbstractTreeElement<T extends AbstractTreeElement> {
 	 * @param index
 	 * @return String
 	 */
-	public abstract String getAttributeValue(int index);
+	String getAttributeValue(int index);
 
 	/**
 	 * Retrieves the TreeElement representing the attribute at
@@ -84,36 +84,36 @@ public interface AbstractTreeElement<T extends AbstractTreeElement> {
 	 * 
 	 * @return TreeElement
 	 */
-	public abstract T getAttribute(String namespace, String name);
+	T getAttribute(String namespace, String name);
 
 	/**
 	 * get value of attribute with namespace:name' in the list
 	 * 
 	 * @return String
 	 */
-	public abstract String getAttributeValue(String namespace, String name);
+	String getAttributeValue(String namespace, String name);
 
 	//return the tree reference that corresponds to this tree element
-	public abstract TreeReference getRef();
+	TreeReference getRef();
 
-	public abstract int getDepth();
+	int getDepth();
 
-	public abstract String getName();
+	String getName();
 
-	public abstract int getMult();
+	int getMult();
 
 	//Support? 
-	public abstract AbstractTreeElement getParent();
+	AbstractTreeElement getParent();
 
-	public abstract IAnswerData getValue();
+	IAnswerData getValue();
 
-	public abstract int getDataType();
+	int getDataType();
 	
-	public abstract void clearCaches();
+	void clearCaches();
 
-	public abstract boolean isRelevant();
+	boolean isRelevant();
 	
-	public abstract String getNamespace();
+	String getNamespace();
 	
 	/**
 	 * TODO: Worst method name ever. Don't use this unless you know what's up.
@@ -125,5 +125,5 @@ public interface AbstractTreeElement<T extends AbstractTreeElement> {
 	 * @param evalContext
 	 * @return
 	 */
-	public abstract List<TreeReference> tryBatchChildFetch(String name, int mult, List<XPathExpression> predicates, EvaluationContext evalContext);
+	List<TreeReference> tryBatchChildFetch(String name, int mult, List<XPathExpression> predicates, EvaluationContext evalContext);
 }

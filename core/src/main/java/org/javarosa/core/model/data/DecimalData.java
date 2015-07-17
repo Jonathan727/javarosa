@@ -95,7 +95,7 @@ public class DecimalData implements IAnswerData {
 
     @Override
 	public UncastData uncast() {
-		return new UncastData(((Double)getValue()).toString());
+		return new UncastData(getValue().toString());
 	}
 
     @Override

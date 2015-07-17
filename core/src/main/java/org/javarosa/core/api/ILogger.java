@@ -35,18 +35,18 @@ import org.javarosa.core.log.StreamLogSerializer;
  */
 public interface ILogger {
 	
-	public void log(String type, String message, Date logDate);
+	void log(String type, String message, Date logDate);
 	
-	public void clearLogs();
+	void clearLogs();
 	
-	public <T> T serializeLogs(IFullLogSerializer<T> serializer);
+	<T> T serializeLogs(IFullLogSerializer<T> serializer);
 	
-	public void serializeLogs(StreamLogSerializer serializer) throws IOException;
-	public void serializeLogs(StreamLogSerializer serializer, int limit) throws IOException;
+	void serializeLogs(StreamLogSerializer serializer) throws IOException;
+	void serializeLogs(StreamLogSerializer serializer, int limit) throws IOException;
 	
-	public void panic();
+	void panic();
 	
-	public int logSize();
+	int logSize();
 	
-	public void halt();
+	void halt();
 }

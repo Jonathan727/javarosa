@@ -66,16 +66,12 @@ public class XFormAnswerDataSerializer implements IAnswerDataSerializer {
 	}
 
 	public boolean canSerialize(IAnswerData data) {
-		if (data instanceof StringData || data instanceof DateData || data instanceof TimeData ||
-		    data instanceof SelectMultiData || data instanceof SelectOneData ||
-		    data instanceof IntegerData || data instanceof DecimalData || data instanceof PointerAnswerData	||
-		    data instanceof MultiPointerAnswerData ||
-		    data instanceof GeoPointData || data instanceof GeoTraceData || data instanceof GeoShapeData ||
-		    data instanceof LongData || data instanceof DateTimeData || data instanceof UncastData) {
-			return true;
-		} else {
-			return false;
-		}
+		return data instanceof StringData || data instanceof DateData || data instanceof TimeData ||
+				data instanceof SelectMultiData || data instanceof SelectOneData ||
+				data instanceof IntegerData || data instanceof DecimalData || data instanceof PointerAnswerData ||
+				data instanceof MultiPointerAnswerData ||
+				data instanceof GeoPointData || data instanceof GeoTraceData || data instanceof GeoShapeData ||
+				data instanceof LongData || data instanceof DateTimeData || data instanceof UncastData;
 	}
 
 	/**
@@ -92,7 +88,7 @@ public class XFormAnswerDataSerializer implements IAnswerDataSerializer {
 	 * @return A String which contains the given answer
 	 */
 	public Object serializeAnswerData(StringData data) {
-		return (String)data.getValue();
+		return data.getValue();
 	}
 
 	/**
@@ -188,15 +184,15 @@ public class XFormAnswerDataSerializer implements IAnswerDataSerializer {
 	}
 
 	public Object serializeAnswerData(IntegerData data) {
-		return ((Integer)data.getValue()).toString();
+		return data.getValue().toString();
 	}
 
 	public Object serializeAnswerData(LongData data) {
-		return ((Long)data.getValue()).toString();
+		return data.getValue().toString();
 	}
 
 	public Object serializeAnswerData(DecimalData data) {
-		return ((Double)data.getValue()).toString();
+		return data.getValue().toString();
 	}
 
 	public Object serializeAnswerData(GeoPointData data) {
@@ -299,11 +295,11 @@ public class XFormAnswerDataSerializer implements IAnswerDataSerializer {
 		}
 		if( data instanceof PointerAnswerData) {
 			IDataPointer[] pointer = new IDataPointer[1];
-			pointer[0] = (IDataPointer)((PointerAnswerData)data).getValue();
+			pointer[0] = (IDataPointer) data.getValue();
 			return pointer;
 		}
 		else if (data instanceof MultiPointerAnswerData ) {
-			return (IDataPointer[])((MultiPointerAnswerData)data).getValue();
+			return (IDataPointer[]) data.getValue();
 		}
 		//This shouldn't have been called.
 		return null;

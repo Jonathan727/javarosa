@@ -199,7 +199,7 @@ public class QuestionPreloader {
          List<String> v = DateUtils.split(preloadParams.substring(11), "-", false);
 			String[] params = new String[v.size()];
 			for (int i = 0; i < params.length; i++)
-				params[i] = (String)v.get(i);
+				params[i] = v.get(i);
 			
 			try {
 				String type = params[0];

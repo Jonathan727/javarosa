@@ -190,7 +190,7 @@ import org.kxml2.kdom.Node;
 					e = (Element)serializedAnswer;
 				} else if (serializedAnswer instanceof String) {
 					e = new Element();
-					e.addChild(Node.TEXT, (String)serializedAnswer);
+					e.addChild(Node.TEXT, serializedAnswer);
 				} else {
 					throw new RuntimeException("Can't handle serialized output for" + instanceNode.getValue().toString() + ", " + serializedAnswer);
 				}
@@ -211,7 +211,7 @@ import org.kxml2.kdom.Node;
 				}
 
 				for (int i = 0; i < childNames.size(); i++) {
-					String childName = (String)childNames.get(i);
+					String childName = childNames.get(i);
 					int mult = instanceNode.getChildMultiplicity(childName);
 					for (int j = 0; j < mult; j++) {
 						Element child = serializeNode(instanceNode.getChild(childName, j));

@@ -103,10 +103,7 @@ public class DummyIndexedStorageUtility<T extends Persistable> implements IStora
 	 * @see org.javarosa.core.services.storage.IStorageUtility#exists(int)
 	 */
 	public boolean exists(int id) {
-		if(data.containsKey(DataUtil.integer(id))) {
-			return true;
-		}
-		return false;
+		return data.containsKey(DataUtil.integer(id));
 	}
 
 	/* (non-Javadoc)
@@ -144,10 +141,7 @@ public class DummyIndexedStorageUtility<T extends Persistable> implements IStora
 	 * @see org.javarosa.core.services.storage.IStorageUtility#isEmpty()
 	 */
 	public boolean isEmpty() {
-		if(data.size() > 0) {
-			return true;
-		}
-		return false;
+		return data.size() > 0;
 	}
 
 	/* (non-Javadoc)
@@ -269,7 +263,7 @@ public class DummyIndexedStorageUtility<T extends Persistable> implements IStora
 		meta.clear();
 		for(Enumeration<Integer> en = data.keys(); en.hasMoreElements() ; ) {
 			Integer i = en.nextElement();
-			Externalizable e = (Externalizable)data.get(i);
+			Externalizable e = data.get(i);
 
 			if( e instanceof IMetaData ) {
 

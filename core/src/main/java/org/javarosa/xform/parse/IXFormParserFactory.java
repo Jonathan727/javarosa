@@ -12,12 +12,12 @@ import org.kxml2.kdom.Document;
  *
  */
 public interface IXFormParserFactory {
-	public XFormParser getXFormParser(Reader reader);
+	XFormParser getXFormParser(Reader reader);
 	
-	public XFormParser getXFormParser(Document doc);
+	XFormParser getXFormParser(Document doc);
 	
-	public XFormParser getXFormParser(Reader form, Reader instance);
+	XFormParser getXFormParser(Reader form, Reader instance);
 	
-	public XFormParser getXFormParser(Document form, Document instance);
+	XFormParser getXFormParser(Document form, Document instance);
 
 }

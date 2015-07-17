@@ -326,7 +326,7 @@ public class Localizer implements Externalizable {
 		if (fallbackDefaultLocale && defaultLocale != null) {
          List<LocaleDataSource> defaultResources = localeResources.get(defaultLocale);
 			for (int i = 0; i < defaultResources.size(); ++i) {
-				loadTable(data,((LocaleDataSource)defaultResources.get(i)).getLocalizedText());
+				loadTable(data, defaultResources.get(i).getLocalizedText());
 			}
       for (String key : data.keySet()) {
 				defaultLocaleKeys.put(key, Boolean.TRUE);
@@ -335,7 +335,7 @@ public class Localizer implements Externalizable {
 
       List<LocaleDataSource> resources = localeResources.get(locale);
 		for(int i = 0 ; i < resources.size() ; ++i ) {
-			loadTable(data,((LocaleDataSource)resources.get(i)).getLocalizedText());
+			loadTable(data, resources.get(i).getLocalizedText());
 		}
 
 		//Strings are now immutable
@@ -711,7 +711,7 @@ public class Localizer implements Externalizable {
 	public void readExternal(DataInputStream dis, PrototypeFactory pf) throws IOException, DeserializationException {
 		fallbackDefaultLocale = ExtUtil.readBool(dis);
 		fallbackDefaultForm = ExtUtil.readBool(dis);
-		localeResources = (OrderedMap<String,List<LocaleDataSource>>)ExtUtil.read(dis, new ExtWrapMap(String.class, new ExtWrapListPoly(), ExtWrapMap.TYPE_ORDERED),	pf);;
+		localeResources = (OrderedMap<String,List<LocaleDataSource>>)ExtUtil.read(dis, new ExtWrapMap(String.class, new ExtWrapListPoly(), ExtWrapMap.TYPE_ORDERED),	pf);
 		locales = (List<String>)ExtUtil.read(dis, new ExtWrapList(String.class));
 		setDefaultLocale((String)ExtUtil.read(dis, new ExtWrapNullable(String.class), pf));
 		String currentLocale = (String)ExtUtil.read(dis, new ExtWrapNullable(String.class), pf);

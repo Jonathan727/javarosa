@@ -51,7 +51,7 @@ import org.javarosa.xform.parse.XFormParserReporter;
 public abstract class IDag {
 
 	public interface EventNotifierAccessor {
-		public EventNotifier getEventNotifier();
+		EventNotifier getEventNotifier();
 	}
 	
 	protected final EventNotifierAccessor accessor;
@@ -433,7 +433,7 @@ public abstract class IDag {
          leaves.clear();
          leaves.addAll(vertices);
          for (int i = 0; i < edges.size(); i++) {
-            TreeReference[] edge = (TreeReference[])edges.get(i);
+            TreeReference[] edge = edges.get(i);
             leaves.remove(edge[0]);
          }
 
@@ -448,7 +448,7 @@ public abstract class IDag {
             vertices.remove(leaf);
          }
          for (int i = edges.size() - 1; i >= 0; i--) {
-            TreeReference[] edge = (TreeReference[])edges.get(i);
+            TreeReference[] edge = edges.get(i);
             if (leaves.contains(edge[1]))
                edges.remove(i);
          }

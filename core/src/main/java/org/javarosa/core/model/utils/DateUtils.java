@@ -341,9 +341,9 @@ public class DateUtils {
 			return false;
 
 		try {
-			f.year = Integer.parseInt((String)pieces.get(0));
-			f.month = Integer.parseInt((String)pieces.get(1));
-			f.day = Integer.parseInt((String)pieces.get(2));
+			f.year = Integer.parseInt(pieces.get(0));
+			f.month = Integer.parseInt(pieces.get(1));
+			f.day = Integer.parseInt(pieces.get(2));
 		} catch (NumberFormatException nfe) {
 			return false;
 		}
@@ -440,11 +440,11 @@ public class DateUtils {
 			return false;
 
 		try {
-			f.hour = Integer.parseInt((String)pieces.get(0));
-			f.minute = Integer.parseInt((String)pieces.get(1));
+			f.hour = Integer.parseInt(pieces.get(0));
+			f.minute = Integer.parseInt(pieces.get(1));
 
 			if (pieces.size() == 3) {
-				String secStr = (String)pieces.get(2);
+				String secStr = pieces.get(2);
 				int i;
 				for (i = 0; i < secStr.length(); i++) {
 					char c = secStr.charAt(i);
@@ -716,7 +716,7 @@ public class DateUtils {
 
         if (combineMultipleDelimiters) {
         	for (int i = 0; i < pieces.size(); i++) {
-        		if (((String)pieces.get(i)).length() == 0) {
+        		if (pieces.get(i).length() == 0) {
         			pieces.remove(i);
         			i--;
         		}
@@ -775,11 +775,7 @@ public class DateUtils {
 		if(string == null || substring == null){
 			return false;
 		}
-		if(string.indexOf(substring)== -1){
-			return false;
-		}else{
-			return true;
-		}
+		return string.indexOf(substring) != -1;
 	}
 
 }

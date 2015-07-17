@@ -294,10 +294,7 @@ import org.javarosa.xpath.expr.XPathStringLiteral;
 	}
 
 	public boolean hasChildren() {
-		if(getNumChildren() > 0) {
-			return true;
-		}
-		return false;
+		return getNumChildren() > 0;
 	}
 
 	/* (non-Javadoc)
@@ -991,7 +988,7 @@ import org.javarosa.xpath.expr.XPathStringLiteral;
 
 			for (int i = 0; i < this.getNumChildren(); i++) {
 				TreeElement child = this.getChildAt(i);
-				String expectedName = (String) names.get(i);
+				String expectedName = names.get(i);
 
 				if (!child.getName().equals(expectedName)) {
 					TreeElement child2 = null;

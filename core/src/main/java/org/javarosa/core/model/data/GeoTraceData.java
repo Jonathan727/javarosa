@@ -55,7 +55,7 @@ public class GeoTraceData implements IAnswerData, IExprDataType {
 		public GeoTrace(ArrayList<double[]> points) {
 			this.points = points;
 		}
-	};
+	}
 
 	public final ArrayList<GeoPointData> points = new ArrayList<GeoPointData>();
 
@@ -193,10 +193,7 @@ public class GeoTraceData implements IAnswerData, IExprDataType {
 	@Override
 	public Boolean toBoolean() {
 		// return whether or not any Geopoints have been set
-		if ( points.size() == 0 ) {
-			return false;
-		}
-		return true;
+		return points.size() != 0;
 	}
 
 	@Override

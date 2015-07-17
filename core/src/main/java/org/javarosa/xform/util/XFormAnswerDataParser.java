@@ -190,7 +190,7 @@ public class XFormAnswerDataParser {
       List<String> choices = DateUtils.split(text, XFormAnswerDataSerializer.DELIMITER, true);
       List<Selection> v = new ArrayList<Selection>(choices.size()); // assume they are all still valid...
 		for (int i = 0; i < choices.size(); i++) {
-			Selection s = getSelection((String)choices.get(i), q);
+			Selection s = getSelection(choices.get(i), q);
 			if (s != null)
 				v.add(s);
 		}

@@ -87,18 +87,18 @@ public class Token {
 		case MOD: s = "MOD"; break;
 		case MULT: s = "MULT"; break;
 		case NEQ: s = "NEQ"; break;
-		case NSWILDCARD: s = "NSWILDCARD(" + (String)val + ")"; break;
-		case NUM: s = "NUM(" + ((Double)val).toString() + ")"; break;
+		case NSWILDCARD: s = "NSWILDCARD(" + val + ")"; break;
+		case NUM: s = "NUM(" + val.toString() + ")"; break;
 		case OR: s = "OR"; break;
 		case PLUS: s = "PLUS"; break;
-		case QNAME: s = "QNAME(" + ((XPathQName)val).toString() + ")"; break;
+		case QNAME: s = "QNAME(" + val.toString() + ")"; break;
 		case RBRACK: s = "RBRACK"; break;
 		case RPAREN: s = "RPAREN"; break;
 		case SLASH: s = "SLASH"; break;
-		case STR: s = "STR(" + (String)val + ")"; break;
+		case STR: s = "STR(" + val + ")"; break;
 		case UMINUS: s = "UMINUS"; break;
 		case UNION: s = "UNION"; break;
-		case VAR: s = "VAR(" + ((XPathQName)val).toString() + ")"; break;
+		case VAR: s = "VAR(" + val.toString() + ")"; break;
 		case WILDCARD: s = "WILDCARD"; break;		
 		}
 		

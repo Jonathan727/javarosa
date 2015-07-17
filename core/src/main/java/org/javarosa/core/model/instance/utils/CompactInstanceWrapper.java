@@ -329,7 +329,7 @@ public class CompactInstanceWrapper implements WrappingStorageUtility.Serializat
 					case 0x44: answerType = BooleanData.class; break;
 					}
 
-					val = (IAnswerData)ExtUtil.read(in, answerType);
+					val = ExtUtil.read(in, answerType);
 				}
 			}
 		}
@@ -406,7 +406,7 @@ public class CompactInstanceWrapper implements WrappingStorageUtility.Serializat
 	   List<Selection> val = (List<Selection>)data.getValue();
 		List<Object> choices = new ArrayList<Object>(val.size());
 		for (int i = 0; i < val.size(); i++) {
-			choices.add(extractSelection((Selection)val.get(i)));
+			choices.add(extractSelection(val.get(i)));
 		}
 		return choices;
 	}

@@ -578,7 +578,7 @@ public class FormEntryModel {
 				if (group.getRepeat()) {
 					if (repeatStructure == REPEAT_STRUCTURE_NON_LINEAR) {
 
-						if (((Integer)multiplicities.get(multiplicities.size() - 1)).intValue() == TreeReference.INDEX_REPEAT_JUNCTURE) {
+						if (multiplicities.get(multiplicities.size() - 1).intValue() == TreeReference.INDEX_REPEAT_JUNCTURE) {
 
 							descend = false;
 							exitRepeat = true;
@@ -626,14 +626,14 @@ public class FormEntryModel {
 
 				} else {
 
-					multiplicities.set(i, Integer.valueOf(((Integer) multiplicities.get(i)).intValue() + 1));
+					multiplicities.set(i, Integer.valueOf(multiplicities.get(i).intValue() + 1));
 
 				}
 				return;
 			}
 
 			IFormElement parent = (i == 0 ? form : elements.get(i - 1));
-			int curIndex = ((Integer) indexes.get(i)).intValue();
+			int curIndex = indexes.get(i).intValue();
 
 			// increment to the next element on the current level
 			if (curIndex + 1 >= parent.getChildren().size()) {

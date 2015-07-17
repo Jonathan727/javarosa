@@ -181,7 +181,7 @@ public class SMSSerializingVisitor implements IInstanceSerializingVisitor {
 						+ serializedAnswer);
 			} else if (serializedAnswer instanceof String) {
 				Element e = new Element();
-				e.addChild(Node.TEXT, (String) serializedAnswer);
+				e.addChild(Node.TEXT, serializedAnswer);
 
 				String tag = instanceNode.getAttributeValue("", "tag");
 				if ( tag != null ) {

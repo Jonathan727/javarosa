@@ -92,7 +92,7 @@ public class ASTNodePathStep extends ASTNode {
 			
 			XPathExpression[] preds = new XPathExpression[predicates.size()];
 			for (int i = 0; i < preds.length; i++)
-				preds[i] = ((ASTNode)predicates.elementAt(i)).build();
+				preds[i] = predicates.elementAt(i).build();
 			step.predicates = preds;
 			
 			return step;

@@ -1473,7 +1473,7 @@ public class XFormParser {
 
 			if (group != null) {
 				if (!group.getRepeat() && group.getChildren().size() == 1) {
-					IFormElement grandchild = (IFormElement)group.getChildren().get(0);
+					IFormElement grandchild = group.getChildren().get(0);
 					GroupDef repeat = null;
 					if (grandchild instanceof GroupDef)
 						repeat = (GroupDef)grandchild;
@@ -1985,7 +1985,7 @@ public class XFormParser {
             if( typeMappings.get(modelType) == null ){
                 throw new XFormParseException("ModelType " + modelType + " is not recognized.",node);
             }
-            element = (TreeElement)modelPrototypes.getNewInstance(((Integer)typeMappings.get(modelType)).toString());
+            element = (TreeElement)modelPrototypes.getNewInstance(typeMappings.get(modelType).toString());
 			if(element == null) {
 				element = new TreeElement(name, multiplicity);
 				System.out.println("No model type prototype available for " + modelType);
@@ -2032,7 +2032,7 @@ public class XFormParser {
       List<TreeReference> refs = new ArrayList<TreeReference>(repeats);
 
 		for (int i = 0; i < itemsets.size(); i++) {
-			ItemsetBinding itemset = (ItemsetBinding)itemsets.get(i);
+			ItemsetBinding itemset = itemsets.get(i);
 			TreeReference srcRef = itemset.nodesetRef;
 			if (!refs.contains(srcRef)) {
 				//CTS: Being an itemset root is not sufficient to mark
@@ -2358,10 +2358,10 @@ public class XFormParser {
 			String type = null;
 
 			if (child instanceof GroupDef) {
-				ref = ((GroupDef)child).getBind();
+				ref = child.getBind();
 				type = (((GroupDef)child).getRepeat() ? "Repeat" : "Group");
 			} else if (child instanceof QuestionDef) {
-				ref = ((QuestionDef)child).getBind();
+				ref = child.getBind();
 				type = "Question";
 			}
 			TreeReference tref = FormInstance.unpackReference(ref);
@@ -2698,7 +2698,7 @@ public class XFormParser {
 			}
 
 			if (typeMappings.containsKey(type)) {
-				dataType = ((Integer)typeMappings.get(type)).intValue();
+				dataType = typeMappings.get(type).intValue();
 			} else {
 				dataType = Constants.DATATYPE_UNSUPPORTED;
 				reporter.warning(XFormParserReporter.TYPE_ERROR_PRONE, "unrecognized data type [" + type + "]", null);

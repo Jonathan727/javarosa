@@ -98,7 +98,7 @@ public class SelectMultiData implements IAnswerData {
 		StringBuilder b = new StringBuilder();
 
 		for (int i = 0; i < vs.size(); i++) {
-			Selection s = (Selection)vs.get(i);
+			Selection s = vs.get(i);
 			b.append(s.getValue());
 			if (i < vs.size() - 1)
 				b.append(", ");

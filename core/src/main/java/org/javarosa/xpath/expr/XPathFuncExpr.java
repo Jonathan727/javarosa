@@ -520,11 +520,7 @@ public class XPathFuncExpr extends XPathExpression {
 		o = unpack(o);
 		if (o instanceof String && ((String)o).length() == 0) {
 			return true;
-		} else if (o instanceof Double && ((Double)o).isNaN()) {
-			return true;
-		} else {
-			return false;
-		}
+		} else return o instanceof Double && ((Double) o).isNaN();
 	}
 
 	public static Double stringLength (Object o) {
@@ -681,7 +677,7 @@ public class XPathFuncExpr extends XPathExpression {
 		} else if (o instanceof Date) {
 			val = DateUtils.formatDate((Date)o, DateUtils.FORMAT_ISO8601);
 		} else if (o instanceof IExprDataType) {
-			val = ((IExprDataType)o).toString();
+			val = o.toString();
 		}
 
 		if (val != null) {
@@ -754,7 +750,7 @@ public class XPathFuncExpr extends XPathExpression {
 			}
 		} else if (o instanceof Date) {
 			if ( preserveTime ) {
-				return (Date) o;
+				return o;
 			} else {
 				return DateUtils.roundDate((Date)o);
 			}
