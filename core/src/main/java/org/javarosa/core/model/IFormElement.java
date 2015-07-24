@@ -16,11 +16,11 @@
 
 package org.javarosa.core.model;
 
-import java.util.List;
-
 import org.javarosa.core.model.instance.TreeElement;
 import org.javarosa.core.services.locale.Localizable;
 import org.javarosa.core.util.externalizable.Externalizable;
+
+import java.util.List;
 
 /**
  * An IFormDataElement is an element of the physical interaction for

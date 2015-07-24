@@ -16,17 +16,17 @@
 
 package org.javarosa.core.model.condition;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-
 import org.javarosa.core.model.data.IAnswerData;
 import org.javarosa.core.model.instance.FormInstance;
 import org.javarosa.core.model.instance.TreeElement;
 import org.javarosa.core.model.instance.TreeReference;
 import org.javarosa.xpath.IExprDataType;
 import org.javarosa.xpath.expr.XPathExpression;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 /* a collection of objects that affect the evaluation of an expression, like function handlers
  * and (not supported) variable bindings

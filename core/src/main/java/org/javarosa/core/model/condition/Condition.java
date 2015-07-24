@@ -16,17 +16,17 @@
 
 package org.javarosa.core.model.condition;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import org.javarosa.core.model.instance.FormInstance;
 import org.javarosa.core.model.instance.TreeElement;
 import org.javarosa.core.model.instance.TreeReference;
 import org.javarosa.core.util.externalizable.DeserializationException;
 import org.javarosa.core.util.externalizable.ExtUtil;
 import org.javarosa.core.util.externalizable.PrototypeFactory;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Condition extends Triggerable {
 	public static final int ACTION_NULL = 0;
@@ -85,8 +85,10 @@ public class Condition extends Triggerable {
 		case ACTION_HIDE:         node.setRelevant(false); break;
 		case ACTION_ENABLE:       node.setEnabled(true); break;
 		case ACTION_DISABLE:      node.setEnabled(false); break;
-		case ACTION_LOCK:         /* not supported */; break;
-		case ACTION_UNLOCK:       /* not supported */; break;
+			case ACTION_LOCK:         /* not supported */
+				break;
+			case ACTION_UNLOCK:       /* not supported */
+				break;
 		case ACTION_REQUIRE:      node.setRequired(true); break;
 		case ACTION_DONT_REQUIRE: node.setRequired(false); break;
 		}

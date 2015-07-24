@@ -16,14 +16,14 @@
 
 package org.javarosa.core.model.utils;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.List;
-import java.util.ArrayList;
-
 import org.javarosa.core.services.locale.Localization;
 import org.javarosa.core.util.MathUtils;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Static utility methods for Dates in j2me

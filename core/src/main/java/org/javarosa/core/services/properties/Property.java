@@ -16,16 +16,16 @@
 
 package org.javarosa.core.services.properties;
 
+import org.javarosa.core.services.storage.IMetaData;
+import org.javarosa.core.services.storage.Persistable;
+import org.javarosa.core.util.externalizable.PrototypeFactory;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.javarosa.core.services.storage.IMetaData;
-import org.javarosa.core.services.storage.Persistable;
-import org.javarosa.core.util.externalizable.PrototypeFactory;
 
 /**
  * Property is an encapsulation of a record containing a property in the J2ME

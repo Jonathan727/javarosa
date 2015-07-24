@@ -16,14 +16,14 @@
 
 package org.javarosa.xpath.expr;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.javarosa.core.model.condition.EvaluationContext;
 import org.javarosa.core.model.condition.pivot.UnpivotableExpressionException;
 import org.javarosa.core.model.instance.FormInstance;
 import org.javarosa.core.services.Logger;
 import org.javarosa.core.util.externalizable.Externalizable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class XPathExpression implements Externalizable {
 

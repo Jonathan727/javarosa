@@ -16,11 +16,11 @@
 
 package org.javarosa.core.util;
 
+import org.javarosa.core.services.PropertyManager;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import org.javarosa.core.services.PropertyManager;
 
 public class PropertyUtils {
 

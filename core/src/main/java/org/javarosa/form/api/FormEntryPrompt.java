@@ -16,9 +16,6 @@
 
 package org.javarosa.form.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.javarosa.core.model.Constants;
 import org.javarosa.core.model.FormDef;
 import org.javarosa.core.model.FormIndex;
@@ -39,6 +36,9 @@ import org.javarosa.core.services.Logger;
 import org.javarosa.core.util.NoLocalizedTextException;
 import org.javarosa.core.util.UnregisteredLocaleException;
 import org.javarosa.formmanager.view.IQuestionWidget;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 
