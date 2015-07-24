@@ -19,15 +19,15 @@
  */
 package org.javarosa.core.services.transport.payload;
 
+import org.javarosa.core.util.externalizable.DeserializationException;
+import org.javarosa.core.util.externalizable.ExtUtil;
+import org.javarosa.core.util.externalizable.PrototypeFactory;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.javarosa.core.util.externalizable.DeserializationException;
-import org.javarosa.core.util.externalizable.ExtUtil;
-import org.javarosa.core.util.externalizable.PrototypeFactory;
 
 /**
  * A ByteArrayPayload is a simple payload consisting of a
@@ -78,6 +78,13 @@ public class ByteArrayPayload implements IDataPayload {
 	public InputStream getPayloadStream() {
 
 		return new ByteArrayInputStream(payload);
+	}
+
+	/**
+	 * @return raw byte array of the payload.
+	 */
+	public byte[] getRawPayload() {
+		return payload;
 	}
 
 	/* (non-Javadoc)
