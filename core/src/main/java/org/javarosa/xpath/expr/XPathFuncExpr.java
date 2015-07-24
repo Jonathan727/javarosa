@@ -968,8 +968,8 @@ public class XPathFuncExpr extends XPathExpression {
 	 */
 	public static Double sum (Object argVals[]) {
 		double sum = 0.0;
-		for (int i = 0; i < argVals.length; i++) {
-			Double dargVal=toNumeric(argVals[i]);
+		for (Object argVal : argVals) {
+			Double dargVal = toNumeric(argVal);
 			if (!dargVal.isNaN()) {
 				sum += dargVal.doubleValue();
 			}
@@ -1048,26 +1048,26 @@ public class XPathFuncExpr extends XPathExpression {
     private static Object max(Object[] argVals) {
         double max = Double.MIN_VALUE;
         boolean returnNaN = true;
-        for (int i = 0; i < argVals.length; i++) {
-            Double dargVal = toNumeric(argVals[i]);
-            if (!dargVal.isNaN()) {
-                max = Math.max(max, dargVal.doubleValue());
-                returnNaN = false;
-            }
-        }
+		for (Object argVal : argVals) {
+			Double dargVal = toNumeric(argVal);
+			if (!dargVal.isNaN()) {
+				max = Math.max(max, dargVal.doubleValue());
+				returnNaN = false;
+			}
+		}
         return new Double(returnNaN ? Double.NaN : max);
     }
 
     private static Object min(Object[] argVals) {
         double min = Double.MAX_VALUE;
         boolean returnNaN = true;
-        for (int i = 0; i < argVals.length; i++) {
-            Double dargVal = toNumeric(argVals[i]);
-            if (!dargVal.isNaN()) {
-                min = Math.min(min, dargVal.doubleValue());
-                returnNaN = false;
-            }
-        }
+		for (Object argVal : argVals) {
+			Double dargVal = toNumeric(argVal);
+			if (!dargVal.isNaN()) {
+				min = Math.min(min, dargVal.doubleValue());
+				returnNaN = false;
+			}
+		}
         return new Double(returnNaN ? Double.NaN : min);
     }
 
@@ -1127,8 +1127,8 @@ public class XPathFuncExpr extends XPathExpression {
 		int max = toNumeric(oMax).intValue();
 
 		int count = 0;
-		for (int i = 0; i < factors.length; i++) {
-			if (toBoolean(factors[i]).booleanValue())
+		for (Object factor : factors) {
+			if (toBoolean(factor).booleanValue())
 				count++;
 		}
 
@@ -1240,13 +1240,13 @@ public class XPathFuncExpr extends XPathExpression {
 
 		boolean pivoted = false;
 		//evaluate the pivots
-		for(int i = 0 ; i < argVals.length; ++i) {
-			if(argVals[i] == null) {
+		for (Object argVal : argVals) {
+			if (argVal == null) {
 				//one of our arguments contained pivots,
 				pivoted = true;
-			} else if(sentinal.equals(argVals[i])) {
+			} else if (sentinal.equals(argVal)) {
 				//one of our arguments is the sentinal, return the sentinal if possible
-				if(id) {
+				if (id) {
 					return sentinal;
 				} else {
 					//This function modifies the sentinal in a way that makes it impossible to capture

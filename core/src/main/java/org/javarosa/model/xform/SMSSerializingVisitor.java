@@ -15,10 +15,6 @@ package org.javarosa.model.xform;
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.javarosa.core.data.IDataPointer;
 import org.javarosa.core.model.FormDef;
 import org.javarosa.core.model.IAnswerDataSerializer;
@@ -32,6 +28,10 @@ import org.javarosa.core.services.transport.payload.IDataPayload;
 import org.javarosa.xform.util.XFormAnswerDataSerializer;
 import org.kxml2.kdom.Element;
 import org.kxml2.kdom.Node;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A modified version of Clayton's XFormSerializingVisitor that constructs
@@ -204,8 +204,8 @@ public class SMSSerializingVisitor implements IInstanceSerializingVisitor {
 					.booleanValue()) {
 				IDataPointer[] pointer = serializer
 						.retrieveExternalDataPointer(instanceNode.getValue());
-				for (int i = 0; i < pointer.length; ++i) {
-					dataPointers.add(pointer[i]);
+				for (IDataPointer aPointer : pointer) {
+					dataPointers.add(aPointer);
 				}
 			}
 		}

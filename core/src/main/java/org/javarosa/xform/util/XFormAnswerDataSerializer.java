@@ -16,19 +16,15 @@
 
 package org.javarosa.xform.util;
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.javarosa.core.data.IDataPointer;
 import org.javarosa.core.model.IAnswerDataSerializer;
 import org.javarosa.core.model.data.BooleanData;
 import org.javarosa.core.model.data.DateData;
 import org.javarosa.core.model.data.DateTimeData;
 import org.javarosa.core.model.data.DecimalData;
-import org.javarosa.core.model.data.GeoTraceData;
 import org.javarosa.core.model.data.GeoPointData;
 import org.javarosa.core.model.data.GeoShapeData;
+import org.javarosa.core.model.data.GeoTraceData;
 import org.javarosa.core.model.data.IAnswerData;
 import org.javarosa.core.model.data.IntegerData;
 import org.javarosa.core.model.data.LongData;
@@ -42,6 +38,10 @@ import org.javarosa.core.model.data.UncastData;
 import org.javarosa.core.model.data.helper.Selection;
 import org.javarosa.core.model.utils.DateUtils;
 import org.kxml2.kdom.Element;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * The XFormAnswerDataSerializer takes in AnswerData objects, and provides
@@ -145,11 +145,11 @@ public class XFormAnswerDataSerializer implements IAnswerDataSerializer {
 			return pointers[0].getDisplayText();
 		}
 		Element parent = new Element();
-		for(int i = 0; i < pointers.length; ++i) {
+		for (IDataPointer pointer : pointers) {
 			Element datael = new Element();
 			datael.setName("data");
 
-			datael.addChild(Element.TEXT, pointers[i].getDisplayText());
+			datael.addChild(Element.TEXT, pointer.getDisplayText());
 			parent.addChild(Element.ELEMENT, datael);
 		}
 		return parent;

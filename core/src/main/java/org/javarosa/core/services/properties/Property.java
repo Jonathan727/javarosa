@@ -50,8 +50,8 @@ public class Property implements Persistable, IMetaData {
         byte[] inputarray = new byte[in.available()];
         in.readFully(inputarray);
 
-        for(int i = 0; i < inputarray.length ; i++ ) {
-            char c = (char)inputarray[i];
+        for (byte anInputByte : inputarray) {
+            char c = (char) anInputByte;
             b.append(c);
         }
         String fullString = b.toString();
@@ -114,9 +114,9 @@ public class Property implements Persistable, IMetaData {
 	public HashMap<String,Object> getMetaData() {
 		HashMap<String,Object> metadata = new HashMap<String,Object>();
 		String[] fields = getMetaDataFields();
-		for (int i = 0; i < fields.length; i++) {
-			metadata.put(fields[i], getMetaData(fields[i]));
-		}
+        for (String field : fields) {
+            metadata.put(field, getMetaData(field));
+        }
 		return metadata;
 	}
 

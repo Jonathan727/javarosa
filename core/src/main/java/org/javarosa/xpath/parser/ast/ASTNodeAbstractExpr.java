@@ -16,8 +16,6 @@
 
 package org.javarosa.xpath.parser.ast;
 
-import java.util.Vector;
-
 import org.javarosa.xpath.expr.XPathExpression;
 import org.javarosa.xpath.expr.XPathNumericLiteral;
 import org.javarosa.xpath.expr.XPathQName;
@@ -26,6 +24,8 @@ import org.javarosa.xpath.expr.XPathVariableReference;
 import org.javarosa.xpath.parser.Parser;
 import org.javarosa.xpath.parser.Token;
 import org.javarosa.xpath.parser.XPathSyntaxException;
+
+import java.util.Vector;
 
 public class ASTNodeAbstractExpr extends ASTNode {
 	public static final int CHILD = 1;
@@ -162,9 +162,9 @@ public class ASTNodeAbstractExpr extends ASTNode {
 		Vector<Integer> sepIdxs = new Vector<Integer>();
 		
 		for (int i = start; i < end; i++) {
-			for (int j = 0; j < separators.length; j++) {
-				if (getTokenType(i) == separators[j]) {
-					part.separators.addElement(Integer.valueOf(separators[j]));
+			for (int separator : separators) {
+				if (getTokenType(i) == separator) {
+					part.separators.addElement(Integer.valueOf(separator));
 					sepIdxs.addElement(Integer.valueOf(i));
 					break;
 				}

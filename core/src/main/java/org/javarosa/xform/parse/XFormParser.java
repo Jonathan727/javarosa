@@ -16,16 +16,6 @@
 
 package org.javarosa.xform.parse;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
-
 import org.javarosa.core.model.Action;
 import org.javarosa.core.model.Constants;
 import org.javarosa.core.model.DataBinding;
@@ -47,10 +37,10 @@ import org.javarosa.core.model.instance.InvalidReferenceException;
 import org.javarosa.core.model.instance.TreeElement;
 import org.javarosa.core.model.instance.TreeReference;
 import org.javarosa.core.model.instance.utils.IAnswerResolver;
-import org.javarosa.core.model.util.restorable.Restorable;
-import org.javarosa.core.model.util.restorable.RestoreUtils;
 import org.javarosa.core.model.osm.OSMTag;
 import org.javarosa.core.model.osm.OSMTagItem;
+import org.javarosa.core.model.util.restorable.Restorable;
+import org.javarosa.core.model.util.restorable.RestoreUtils;
 import org.javarosa.core.services.Logger;
 import org.javarosa.core.services.locale.Localizer;
 import org.javarosa.core.services.locale.TableLocaleSource;
@@ -75,6 +65,16 @@ import org.kxml2.kdom.Element;
 import org.kxml2.kdom.Node;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 
 /* droos: i think we need to start storing the contents of the <bind>s in the formdef again */
 
@@ -477,8 +477,8 @@ public class XFormParser {
 			"delHeader"
 		};
       List<String> suppressWarning = new ArrayList<String>(suppressWarningArr.length);
-		for (int i = 0; i < suppressWarningArr.length; i++) {
-			suppressWarning.add(suppressWarningArr[i]);
+		for (String aSuppressWarningArr : suppressWarningArr) {
+			suppressWarning.add(aSuppressWarningArr);
 		}
 
 		IElementHandler eh = handlers.get(name);
@@ -1641,14 +1641,14 @@ public class XFormParser {
 		Localizer l = _f.getLocalizer();
 		String[] locales = l.getAvailableLocales();
 
-		for (int i = 0; i < locales.length; i++) {
+		for (String locale : locales) {
 			//Test whether there is a default translation, or whether there is any special form available.
-			if (!(hasITextMapping(textID, locales[i]) ||
-					(allowSubforms && hasSpecialFormMapping(textID, locales[i])))) {
-				if (locales[i].equals(l.getDefaultLocale())) {
+			if (!(hasITextMapping(textID, locale) ||
+					(allowSubforms && hasSpecialFormMapping(textID, locale)))) {
+				if (locale.equals(l.getDefaultLocale())) {
 					throw new XFormParseException(type + " '" + textID + "': text is not localizable for default locale [" + l.getDefaultLocale() + "]!");
 				} else {
-					reporter.warning(XFormParserReporter.TYPE_TECHNICAL, type + " '" + textID + "': text is not localizable for locale " + locales[i] + ".", null);
+					reporter.warning(XFormParserReporter.TYPE_TECHNICAL, type + " '" + textID + "': text is not localizable for locale " + locale + ".", null);
 				}
 			}
 		}

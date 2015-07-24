@@ -45,8 +45,8 @@ public class StreamsUtil {
 	 */
 	public static void writeToOutput(byte[] bytes, OutputStream out, long[] tally) throws IOException {
 
-		for (int i = 0; i < bytes.length; i++) {
-			out.write(bytes[i]);
+		for (byte aByte : bytes) {
+			out.write(aByte);
 			incr(tally);
 		}
 

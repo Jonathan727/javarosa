@@ -19,11 +19,7 @@ package org.javarosa.model.xform;
 
 
 
-	import java.io.IOException;
-   import java.util.ArrayList;
-import java.util.List;
-
-import org.javarosa.core.data.IDataPointer;
+	import org.javarosa.core.data.IDataPointer;
 import org.javarosa.core.model.FormDef;
 import org.javarosa.core.model.IAnswerDataSerializer;
 import org.javarosa.core.model.IDataReference;
@@ -40,6 +36,10 @@ import org.javarosa.xform.util.XFormSerializer;
 import org.kxml2.kdom.Document;
 import org.kxml2.kdom.Element;
 import org.kxml2.kdom.Node;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 	/**
 	 * A visitor-esque class which walks a FormInstance and constructs an XML document
@@ -166,8 +166,8 @@ import org.kxml2.kdom.Node;
 			Element top = theXmlDoc.getElement(0);
 
 			String[] prefixes = tree.getNamespacePrefixes();
-			for(int i = 0 ; i < prefixes.length; ++i ) {
-				top.setPrefix(prefixes[i], tree.getNamespaceURI(prefixes[i]));
+			for (String prefix : prefixes) {
+				top.setPrefix(prefix, tree.getNamespaceURI(prefix));
 			}
 			if (tree.schema != null) {
 				top.setNamespace(tree.schema);
@@ -197,8 +197,8 @@ import org.kxml2.kdom.Node;
 
 				if(serializer.containsExternalData(instanceNode.getValue()).booleanValue()) {
 					IDataPointer[] pointer = serializer.retrieveExternalDataPointer(instanceNode.getValue());
-					for(int i = 0 ; i < pointer.length ; ++i) {
-						dataPointers.add(pointer[i]);
+					for (IDataPointer aPointer : pointer) {
+						dataPointers.add(aPointer);
 					}
 				}
 			} else {

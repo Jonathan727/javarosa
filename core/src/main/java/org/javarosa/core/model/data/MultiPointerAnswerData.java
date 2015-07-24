@@ -16,15 +16,15 @@
 
 package org.javarosa.core.model.data;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import org.javarosa.core.data.IDataPointer;
 import org.javarosa.core.util.externalizable.DeserializationException;
 import org.javarosa.core.util.externalizable.ExtUtil;
 import org.javarosa.core.util.externalizable.ExtWrapTagged;
 import org.javarosa.core.util.externalizable.PrototypeFactory;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * An answer data storing multiple pointers
@@ -89,8 +89,8 @@ public class MultiPointerAnswerData implements IAnswerData {
     @Override
 	public void writeExternal(DataOutputStream out) throws IOException {
 		out.writeInt(data.length);
-		for(int i = 0; i < data.length ; ++i ) {
-			ExtUtil.write(out, new ExtWrapTagged(data[i]));
+		for (IDataPointer dataPointer : data) {
+			ExtUtil.write(out, new ExtWrapTagged(dataPointer));
 		}
 	}
 

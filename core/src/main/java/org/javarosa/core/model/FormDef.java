@@ -1389,11 +1389,11 @@ public class FormDef implements IFormElement, Localizable, Persistable, IMetaDat
       HashMap<String,Object> metadata = new HashMap<String,Object>();
       String[] fields = getMetaDataFields();
 
-      for (int i = 0; i < fields.length; i++) {
+      for (String field : fields) {
          try {
-            metadata.put(fields[i], getMetaData(fields[i]));
+            metadata.put(field, getMetaData(field));
          } catch (NullPointerException npe) {
-            if (getMetaData(fields[i]) == null) {
+            if (getMetaData(field) == null) {
                System.out.println("ERROR! XFORM MUST HAVE A NAME!");
                npe.printStackTrace();
             }

@@ -16,12 +16,12 @@
 
 package org.javarosa.core.util.externalizable;
 
+import org.javarosa.core.util.MD5;
+import org.javarosa.core.util.PrefixTree;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
-
-import org.javarosa.core.util.MD5;
-import org.javarosa.core.util.PrefixTree;
 
 public class PrototypeFactory {
 	public final static int CLASS_HASH_SIZE = 4;
@@ -80,8 +80,8 @@ public class PrototypeFactory {
 				Date.class
 		};
 
-		for (int i = 0; i < baseTypes.length; i++) {
-			addClass(baseTypes[i]);
+		for (Class baseType : baseTypes) {
+			addClass(baseType);
 		}
 	}
 
